@@ -1,29 +1,59 @@
 # zmk-config-AroundFortyRB
 
-Around Forty RBのファームウェアです。
+Around Forty RB 用の ZMK firmware 設定です。
 
--------------------------------------------------------------------------
-mainブランチで実装済み
--------------------------------------------------------------------------
+## 現在の main ブランチ
 
-🟢Zmkfirmware v0.3に対応。（tsunoshuu様、PR感謝します）
+- ZMK firmware v0.3.0 に対応しています。
+- PMW3610 トラックボール用に `badjeff/zmk-pmw3610-driver` を使用しています。
+- RGB LED widget 用に `caksoylar/zmk-rgbled-widget` を使用しています。
+- ZMK Studio に対応しています。右手側が central で、USB UART snippet を有効にしています。
+- `Mac-Base` をデフォルトレイヤー、`Win-Base` を Windows 用レイヤーとして用意しています。
+- 薙刀式入力用に `eswai/zmk-naginata` を `west.yml` から取り込んでいます。
 
-🟢PMW3610のドライバを「badjeff/zmk-pmw3610-driver」に変更
-
-🟢ZMK Studioに対応
-
-🟢全角半角の切り替えマクロ：全角半角のトグルが一つのキーで可能
-
-🟡Prospector Scannerの対応はいったん見送っています　/ ※Bluetooth接続が不安定になるため
-
-以下、ご利用ガイドです。
+利用ガイド:
 
 https://note.com/razily/n/n0b3c5ff58d92
 
--------------------------------------------------------------------------
-以下はmainブランチには未実装の開発版（dev-main）のみの機能です
--------------------------------------------------------------------------
+## Build
 
-🟢Slow Curor layer：カーソル速度を一時的に遅くて精密操作をしやすくします
+GitHub Actions では以下の firmware を生成します。
 
-🟢2種類のScroll Layer：上下左右のスクロールができるレイヤーと、縦限定スクロールができるレイヤーがあります
+- `AroundForty-RB_R rgbled_adapter`: 右手側。central / ZMK Studio 接続側です。
+- `AroundForty-RB_L rgbled_adapter`: 左手側。peripheral 側です。
+- `settings_reset`: 設定初期化用 firmware です。
+
+ペアリング情報やレイヤー状態を確実に初期化したい場合は、先に `settings_reset` の UF2 を書き込んでから左右の firmware を入れ直します。
+
+## Keymap
+
+主なレイヤーは以下です。
+
+- `Mac-Base`: デフォルトの macOS 用ベースレイヤーです。
+- `Win-Base`: Windows 用ベースレイヤーです。
+- `Mac-Fnc` / `Win-Fnc`: ショートカットや記号入力用レイヤーです。
+- `Mac-Common` / `Win-Common`: カーソル、ページ移動、マウスボタンなどの共通操作レイヤーです。
+- `Num_Scroll`: 数字、記号、カーソル操作用レイヤーです。
+- `V_Scroll`: 縦スクロール用レイヤーです。
+- `Settings`: Bluetooth、reset、bootloader、ZMK Studio unlock 用レイヤーです。
+- `AML`: 右手ホーム周辺のマウスボタン補助レイヤーです。
+- `NAGINATA`: 薙刀式入力レイヤーです。
+
+## Settings Layer
+
+Bluetooth profile selection は左右どちらの上段からでも使えます。
+
+- `Q W E R T`: `BT_SEL 0..4`
+- `Y U I O P`: `BT_SEL 0..4`
+
+その他、`BT_CLR`、`BT_CLR_ALL`、`sys_reset`、`studio_unlock`、`bootloader` を Settings レイヤーに配置しています。
+
+## Naginata
+
+薙刀式レイヤーは `NAGINATA_LAYER` として追加しています。
+
+- `H + J`: 薙刀式 ON
+- `F + G`: 薙刀式 OFF
+- `V + M`: Enter
+
+薙刀式レイヤーは既存レイヤーより上位にあるため、`Num_Scroll`、`Mac-Fnc`、`Settings`、`Mac-Common` へ入るキーは `base_mo` / `base_lt` で包んでいます。これにより、薙刀式レイヤー中でも下位の utility レイヤーへ一時的に入れるようにしています。
