@@ -1,3 +1,14 @@
+#define MAC_BASE_LAYER 0
+#define WIN_BASE_LAYER 1
+#define WIN_FNC_LAYER 2
+#define MAC_FNC_LAYER 3
+#define WIN_COMMON_LAYER 4
+#define MAC_COMMON_LAYER 5
+#define NUM_SCROLL_LAYER 6
+#define V_SCROLL_LAYER 7
+#define SETTINGS_LAYER 8
+#define AML_LAYER 9
+
 #include <behaviors/rgbled_widget.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
@@ -23,7 +34,7 @@
         to_layer_0: to_layer_0 {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            bindings = <&to MAC_BASE_LAYER &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
         };
 
@@ -80,23 +91,23 @@
     keymap {
         compatible = "zmk,keymap";
 
+        Mac-Base {
+            display-name = "Mac-Base";
+            bindings = <
+&kp Q       &kp W         &kp E         &kp R                 &kp T                             &kp Y        &kp U        &kp I          &kp O           &kp P
+&kp A       &kp S         &kp D         &kp F                 &kp G                             &kp H        &kp J        &kp K          &kp L           &lt AML_LAYER SEMICOLON
+&kp Z       &kp X         &kp C         &kp V                 &kp B        &mac_ime             &kp N        &kp M        &kp COMMA      &kp DOT         &mt RIGHT_SHIFT SLASH
+&kp LCTRL   &kp LEFT_ALT  &kp LEFT_GUI  &lt NUM_SCROLL_LAYER LANGUAGE_2  &mt LEFT_SHIFT SPACE  &lt MAC_FNC_LAYER LANGUAGE_1  &mt LEFT_SHIFT SPACE  &kp AT_SIGN  &kp BACKSPACE  &mo SETTINGS_LAYER  &lt MAC_COMMON_LAYER DEL
+            >;
+        };
+
         Win-Base {
             display-name = "Win-Base";
             bindings = <
 &kp Q             &kp W     &kp E     &kp R                 &kp T                          &kp Y        &kp U        &kp I          &kp O            &kp P
-&kp A             &kp S     &kp D     &kp F                 &kp G                          &kp H        &kp J        &kp K          &kp L            &lt 7 MINUS
+&kp A             &kp S     &kp D     &kp F                 &kp G                          &kp H        &kp J        &kp K          &kp L            &lt V_SCROLL_LAYER MINUS
 &mt LEFT_SHIFT Z  &kp X     &kp C     &kp V                 &kp B        &ime_tog          &kp N        &kp M        &kp COMMA      &kp DOT          &mt RIGHT_SHIFT SLASH
-&kp LCTRL         &kp LGUI  &kp LALT  &mt LSHFT LANGUAGE_1  &lt 2 SPACE  &lt 6 LANGUAGE_2  &lt 4 ENTER  &kp AT_SIGN  &kp BACKSPACE  &lt 8 RIGHT_GUI  &kp DEL
-            >;
-        };
-
-        Mac-Base {
-            display-name = "Mac-Base";
-            bindings = <
-&kp Q             &kp W         &kp E         &kp R                 &kp T                          &kp Y        &kp U        &kp I          &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F                 &kp G                          &kp H        &kp J        &kp K          &kp L    &lt 7 MINUS
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                 &kp B        &mac_ime          &kp N        &kp M        &kp COMMA      &kp DOT  &mt RIGHT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_ALT  &kp LEFT_GUI  &mt LSHFT LANGUAGE_1  &lt 3 SPACE  &lt 6 LANGUAGE_2  &lt 5 ENTER  &kp AT_SIGN  &kp BACKSPACE  &mo 8    &kp DEL
+&kp LCTRL         &kp LGUI  &kp LALT  &mt LSHFT LANGUAGE_1  &lt WIN_FNC_LAYER SPACE  &lt NUM_SCROLL_LAYER LANGUAGE_2  &lt WIN_COMMON_LAYER ENTER  &kp AT_SIGN  &kp BACKSPACE  &lt SETTINGS_LAYER RIGHT_GUI  &kp DEL
             >;
         };
 
@@ -114,7 +125,7 @@
             display-name = "Mac-Fnc";
             bindings = <
 &kp LG(A)       &kp LG(X)     &kp LG(C)    &kp LG(V)  &kp LG(F)             &kp LESS_THAN         &kp GREATER_THAN       &kp CARET        &kp PERCENT    &kp DOLLAR
-&kp TAB         &kp LEFT_GUI  &kp LS(TAB)  &mkp MB1   &mkp MB2              &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp AT_SIGN      &kp AMPERSAND  &kp DOUBLE_QUOTES
+&kp TAB         &kp LEFT_GUI  &kp LS(TAB)  &mkp MB1   &mkp MB2              &kp LEFT_PARENTHESIS  &mkp MB1                &mkp MB2         &kp AMPERSAND  &kp DOUBLE_QUOTES
 &kp LEFT_SHIFT  &trans        &trans       &trans     &mkp MB3   &kp LG(R)  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp EXCLAMATION  &kp QUESTION   &kp SINGLE_QUOTE
 &kp LCTRL       &trans        &trans       &trans     &trans     &trans     &trans                &trans                 &kp BACKSPACE    &kp ENTER      &kp HASH
             >;
@@ -142,10 +153,10 @@
 
         Num_Scroll {
             bindings = <
-&kp F1   &kp F2   &kp F3  &kp F4  &kp F5           &kp PLUS      &kp MINUS    &kp N7    &kp N8  &kp N9
-&kp F6   &kp F7   &kp F8  &kp F9  &kp F10          &kp EQUAL     &kp COLON    &kp N4    &kp N5  &kp N6
-&kp F11  &kp F12  &trans  &trans  &trans   &trans  &kp ASTERISK  &kp FSLH     &kp N1    &kp N2  &kp N3
-&trans   &trans   &trans  &trans  &trans   &trans  &kp ENTER     &kp AT_SIGN  &kp BSPC  &trans  &kp N0
+&kp N1     &kp N2        &kp N3        &kp N4        &kp N5                         &kp N6          &kp N7          &kp N8        &kp N9           &kp N0
+&kp TAB    &kp LS(MINUS) &kp PLUS      &kp COLON     &kp MINUS                      &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &kp ENTER
+&trans     &kp LEFT_ALT  &kp LEFT_GUI  &trans        &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans          &trans        &trans           &trans          &trans
+&trans     &trans        &trans        &trans        &trans            &trans             &trans          &trans        &trans           &trans          &trans
             >;
         };
 
@@ -161,10 +172,10 @@
         Settings {
             display-name = "Settings";
             bindings = <
-&trans  &trans  &trans  &trans  &trans         &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4         &trans        &trans          &trans        &trans        &trans
 &trans  &trans  &trans  &trans  &trans         &trans        &trans          &trans        &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &to 0  &trans        &trans          &trans        &trans        &bt BT_CLR
-&trans  &trans  &trans  &trans  &trans  &to 1  &sys_reset    &studio_unlock  &bootloader   &trans        &bt BT_CLR_ALL
+&trans  &trans  &trans  &trans  &trans  &to MAC_BASE_LAYER  &trans        &trans          &trans        &trans        &bt BT_CLR
+&trans  &trans  &trans  &trans  &trans  &to WIN_BASE_LAYER  &sys_reset    &studio_unlock  &bootloader   &trans        &bt BT_CLR_ALL
             >;
         };
 
