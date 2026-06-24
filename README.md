@@ -1,6 +1,7 @@
 # zmk-config-AroundFortyRB
 
 Around Forty RB 用の ZMK firmware 設定です。
+zmkの薙刀式v16を実装しています。
 
 ## 現在の main ブランチ
 
