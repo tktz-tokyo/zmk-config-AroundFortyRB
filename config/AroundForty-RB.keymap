@@ -184,7 +184,7 @@
 &kp Q       &kp W         &kp E         &kp R                 &kp T                             &kp Y        &kp U        &kp I          &kp O           &kp P
 &kp A       &kp S         &kp D         &kp F                 &kp G                             &kp H        &kp J        &kp K          &kp L           &lt AML_LAYER SEMICOLON
 &kp Z       &kp X         &kp C         &kp V                 &kp B        &mac_ime             &kp N        &kp M        &kp COMMA      &kp DOT         &mt RIGHT_SHIFT SLASH
-&kp LCTRL   &kp LEFT_ALT  &kp LEFT_GUI  &lt NUM_SCROLL_LAYER LANGUAGE_2  &mt LEFT_SHIFT SPACE  &lt MAC_FNC_LAYER LANGUAGE_1  &mt LEFT_SHIFT SPACE  &kp AT_SIGN  &kp BACKSPACE  &mo SETTINGS_LAYER  &lt MAC_COMMON_LAYER DEL
+&kp LCTRL   &kp LEFT_ALT  &kp LEFT_GUI  &lt NUM_SCROLL_LAYER LANGUAGE_2  &mt LEFT_SHIFT SPACE  &mo MAC_FNC_LAYER  &mt LEFT_SHIFT SPACE  &kp AT_SIGN  &kp BACKSPACE  &mo SETTINGS_LAYER  &lt MAC_COMMON_LAYER DEL
             >;
         };
 
@@ -211,7 +211,7 @@
         Mac-Fnc {
             display-name = "Mac-Fnc";
             bindings = <
-&kp LG(A)       &kp LG(X)     &kp LG(C)    &kp LG(V)  &kp LG(F)             &kp LESS_THAN         &kp GREATER_THAN       &kp CARET        &kp PERCENT    &kp DOLLAR
+&kp ESC         &kp LG(X)     &kp LG(C)    &kp LG(V)  &kp LG(F)             &kp LESS_THAN         &kp GREATER_THAN       &kp CARET        &kp PERCENT    &kp DOLLAR
 &kp TAB         &kp LEFT_GUI  &kp LS(TAB)  &mkp MB1   &mkp MB2              &kp LEFT_PARENTHESIS  &mkp MB1                &mkp MB2         &kp AMPERSAND  &kp DOUBLE_QUOTES
 &kp LEFT_SHIFT  &trans        &trans       &trans     &mkp MB3   &kp LG(R)  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp EXCLAMATION  &kp QUESTION   &kp SINGLE_QUOTE
 &kp LCTRL       &trans        &trans       &trans     &trans     &trans     &trans                &trans                 &kp BACKSPACE    &kp ENTER      &kp HASH
@@ -282,7 +282,7 @@
 &ng Q                  &ng W                   &ng E                   &ng R                   &ng T                             &ng Y        &ng U         &ng I        &ng O       &ng P
 &ng A                  &ng S                   &ng D                   &ng F                   &ng G                             &ng H        &ng J         &ng K        &ng L       &ng SEMI
 &ng Z                  &ng X                   &ng C                   &ng V                   &ng B        &ng SPACE             &ng N        &ng M         &ng COMMA    &ng DOT     &ng SLASH
-&base_with_mod LCTRL   &base_with_mod LEFT_ALT  &base_with_mod LEFT_GUI  &base_mo NUM_SCROLL_LAYER  &ng SPACE    &base_lt MAC_FNC_LAYER LANGUAGE_1  &ng SPACE    &kp AT_SIGN   &kp BACKSPACE  &base_mo SETTINGS_LAYER  &base_lt MAC_COMMON_LAYER DEL
+&base_with_mod LCTRL   &base_with_mod LEFT_ALT  &base_with_mod LEFT_GUI  &base_mo NUM_SCROLL_LAYER  &ng SPACE    &base_mo MAC_FNC_LAYER  &ng SPACE    &kp AT_SIGN   &kp BACKSPACE  &base_mo SETTINGS_LAYER  &base_lt MAC_COMMON_LAYER DEL
             >;
         };
     };
