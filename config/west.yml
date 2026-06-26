@@ -11,6 +11,9 @@ manifest:
     # 薙刀式入力モジュール
     - name: eswai
       url-base: https://github.com/eswai
+    # トラックボールジェスチャーモジュール
+    - name: kot149
+      url-base: https://github.com/kot149
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -25,5 +28,8 @@ manifest:
     - name: zmk-naginata
       remote: eswai
       revision: 71c0070
+    - name: zmk-mouse-gesture
+      remote: kot149
+      revision: v1
   self:
     path: config
