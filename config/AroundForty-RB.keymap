@@ -64,7 +64,7 @@
             slow-release;
             bindings = <&mo GESTURE_LAYER>;
             key-positions = <0 1>;
-            layers = <MAC_BASE_LAYER>;
+            layers = <MAC_BASE_LAYER NAGINATA_LAYER>;
         };
 
         combo_ng_on {
