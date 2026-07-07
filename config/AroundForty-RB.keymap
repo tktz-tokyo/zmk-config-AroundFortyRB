@@ -26,7 +26,7 @@
 };
 
 &zip_mouse_gesture {
-    enable-eager-mode;
+    // enable-eager-mode;
     always-active;
     suppress-movement;
     stroke-size = <5>;
@@ -46,7 +46,7 @@
 
     show_desktop {
         pattern = <GESTURE_LEFT>;
-        bindings = <&kp F11>;
+        bindings = <&kp LG(F3)>;
     };
 
     next_space {
