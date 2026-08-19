@@ -29,7 +29,7 @@
         compatible = "zmk,input_processor_xy_to_scroll";
         #input-processor-cells = <0>;
         /* 必要に応じてコメントを外して反転 */
-        // scroll-y-invert;
+        scroll-y-invert;
         // scroll-x-invert;
     };
 
@@ -43,7 +43,7 @@
 
         scroll-layer {
             layers = <6 7>;
-            input-processors = <&zip_xy_to_scroll_mapper>,
+            input-processors = <&zip_xy_to_scroll_mapper_tune>,
                                <&zip_scroll_scaler 1 45>;
         };
 
