@@ -5,6 +5,7 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
 #define GESTURE_LAYER 11
+#define AUTO_MOUSE_LAYER 12
 
 &default_transform {
     col-offset = <6>;
@@ -36,10 +37,12 @@
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        /* Pointer motion enables AutoMouse (layer 12) for 1 second.
+         * Scroll and Gesture overrides below take precedence, so their
+         * pointer events do not refresh the AutoMouse timeout. */
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>,
-                           <&zip_xy_scaler 1 1>;
-                           /* AMLを有効にしたい場合は下のコメントを外してください */
-                           // <&zip_temp_layer 9 300>;
+                           <&zip_xy_scaler 1 1>,
+                           <&zip_temp_layer AUTO_MOUSE_LAYER 1000>;
 
         scroll-layer {
             layers = <6 7>;
