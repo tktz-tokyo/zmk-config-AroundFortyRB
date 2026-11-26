@@ -10,6 +10,7 @@
 #define AML_LAYER 9
 #define NAGINATA_LAYER 10
 #define GESTURE_LAYER 11
+#define AUTO_MOUSE_LAYER 12
 
 #include <behaviors/rgbled_widget.dtsi>
 #include <behaviors.dtsi>
@@ -329,6 +330,17 @@
 &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        AutoMouse {
+            display-name = "AutoMouse";
+            /* Above NAGINATA and Gesture; pointer movement activates it. */
+            bindings = <
+&trans  &trans  &trans  &trans  &trans          &trans  &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans    &trans
             >;
         };
     };
